@@ -13,8 +13,8 @@ Risk Levels: Low/Medium/High
 Downtime: None/X minutes
 
 ### Risk and Downtime
-[x] Risk Level: Low
-[x] Downtime: None
+- [x] Risk Level: Low
+- [x] Downtime: None
 
 ### Manual Deployment Steps
 None.
