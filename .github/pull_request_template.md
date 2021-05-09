@@ -9,16 +9,12 @@ Closes #XX
 - [ ] Change has been tested and verified
 
 ### Deployment
-> Set of checks related to deployment of the feature/fix.
+Risk Levels: Low/Medium/High
+Downtime: None/X minutes
 
-Risk Level:
-- [x] Low
-- [ ] Medium
-- [ ] High
-
-Downtime
-- [x] None
-- [ ] X minutes
+### Risk and Downtime
+[x] Risk Level: Low
+[x] Downtime: None
 
 ### Manual Deployment Steps
 None.
