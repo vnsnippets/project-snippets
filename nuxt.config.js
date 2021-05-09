@@ -1,0 +1,73 @@
+
+export default {
+  /*
+  ** Headers of the page
+  */
+  head: {
+    title: 'Snippets',
+    meta: [
+      { charset: 'utf-8' },
+      { name: 'viewport', content: 'width=device-width, initial-scale=1' },
+      { hid: 'description', name: 'description', content: process.env.npm_package_description || '' }
+    ],
+    link: [
+      { rel: 'icon', type: 'image/x-icon', href: '/icon.ico' }
+    ]
+  },
+  /*
+  ** Customize the progress-bar color
+  */
+  loading: { color: '#2d3748' },
+  /*
+  ** Global CSS
+  */
+  css: [
+    '~/assets/fonts/captain-icon.css',
+    '~/assets/css/styles.css'
+  ],
+  /*
+  ** Plugins to load before mounting the App
+  */
+  plugins: [
+  ],
+  /*
+  ** Nuxt.js dev-modules
+  */
+  buildModules: [
+    '@nuxt/typescript-build',
+    // Doc: https://github.com/nuxt-community/nuxt-tailwindcss
+    '@nuxtjs/tailwindcss',
+  ],
+  /*
+  ** Nuxt.js modules
+  */
+  modules: [
+    // Doc: https://axios.nuxtjs.org/usage
+    '@nuxtjs/axios',
+    '@nuxtjs/pwa',
+  ],
+  /*
+  ** Axios module configuration
+  ** See https://axios.nuxtjs.org/options
+  */
+  axios: {
+  },
+  /*
+  ** Build configuration
+  */
+  build: {
+    /*
+    ** You can extend webpack config here
+    */
+    extractCSS: true,
+    babel: {
+      plugins: [
+        ['@babel/plugin-proposal-private-methods', { loose: true }]
+      ]
+    },
+
+    extend(config, ctx) {
+    }
+  },
+  components: true
+}
