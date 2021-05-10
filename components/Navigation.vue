@@ -36,7 +36,7 @@ export default Vue.extend({
 .menu-items {
   border-radius: 0 5px 5px 0px;
   overflow: hidden;
-  box-shadow: 0px 0px 7.5px 0px #0000009F;
+  box-shadow: 0px 0px 7.5px 0px #0000009f;
 }
 
 .menu-item {
