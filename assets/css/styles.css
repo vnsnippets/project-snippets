@@ -20,7 +20,18 @@ html {
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
   box-sizing: border-box;
-  background-color: #1a202c;
+  background-color: black;
+  /* background: #1a202c; */
+  /* background: linear-gradient(90deg, #2d3748 50%, #1a202c 50%); */
+}
+
+body *::-webkit-scrollbar {
+  display: none;
+}
+  
+body * {
+  -ms-overflow-style: none;
+  scrollbar-width: none; 
 }
 
 *,
@@ -28,4 +39,18 @@ html {
 *:after {
   box-sizing: border-box;
   margin: 0;
+}
+
+@keyframes animate-appear {
+  0% {
+    opacity: 0;
+  }
+
+  50% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 1;
+  }
 }
