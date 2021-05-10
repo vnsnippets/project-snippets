@@ -1,8 +1,8 @@
 <template>
-  <div class="bg-gray-800 min-w-full min-h-screen">
+  <div class="bg-gray-800 min-w-full min-h-screen flex flex-col">
     <Navigation />
     <Header />
-    <nuxt />
+    <nuxt class="flex flex-1" />
     <Footer />
   </div>
 </template>

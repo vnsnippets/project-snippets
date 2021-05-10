@@ -1,8 +1,10 @@
 <template>
   <div class="container min-w-full mx-0">
-    <div></div>
-    <div class="blog-articles">
+    <div class="cards">
       <client-only>
+        <div class="wrapper">
+          <ProfileCard />
+        </div>
         <div
           v-for="(meta, index) in articles"
           :key="index"
@@ -27,6 +29,8 @@ import { Metadata } from '~/models/Article'
 
 import { MOCK_METADATA } from '~/Mock'
 
+import ProfileCard from '~/components/cards/ProfileCard.vue'
+
 import ArticleWithImage from '~/components/articles/ArticleWithImage.vue'
 import ArticleWithImageXL from '~/components/articles/ArticleWithImageXL.vue'
 import ArticleWithText from '~/components/articles/ArticleWithText.vue'
@@ -37,7 +41,7 @@ type DataType = {
 
 export default Vue.extend({
   layout: 'blog',
-  components: { ArticleWithImage, ArticleWithImageXL, ArticleWithText },
+  components: { ArticleWithImage, ArticleWithImageXL, ArticleWithText, ProfileCard },
   data: (): DataType => ({
     articles: []
   }),
@@ -85,12 +89,12 @@ export default Vue.extend({
 
 @media only screen and (max-width: 767px) {
   .container {
-    padding: 0.5em 1em 4em;
-  }  
-  
+    padding: 0.5em 1em 0em;
+  }
+
   .wrapper {
     margin: 0 1em 2em;
-  }  
+  }
 }
 
 @media only screen and (min-width: 768px) and (max-width: 1150px) {
@@ -105,14 +109,14 @@ export default Vue.extend({
   }
 }
 
-.blog-articles {
+.cards {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
 }
 
 @media only screen and (max-width: 400px) {
-  .blog-articles {
+  .cards {
     display: block;
     margin: auto;
   }
@@ -120,19 +124,19 @@ export default Vue.extend({
 
 // CSS that will apply to the Article Components
 // @media only screen and (max-width: 919px) {
-//   .article {
+//   .card-container {
 //     max-width: 525px;
 //   }
 // }
 
-.article {
+.card-container {
   // width: 100%;
   flex: 1;
   position: relative;
 }
 
 @media only screen and (max-width: 768px) {
-  .article {
+  .card-container {
     flex: unset;
     min-width: auto;
   }
@@ -140,8 +144,12 @@ export default Vue.extend({
 </style>
 
 <style lang="scss">
-.blog-articles {
-  .card {
+.cards {
+  * {
+    animation: animate-appear 0.5s ease-in-out;
+  }
+
+  .article {
     width: 100%;
 
     .link {
