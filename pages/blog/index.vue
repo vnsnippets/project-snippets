@@ -89,11 +89,11 @@ export default Vue.extend({
 
 @media only screen and (max-width: 767px) {
   .container {
-    padding: 0.5em 1em 0em;
+    padding: 0.5em 0.5em 0em;
   }
 
   .wrapper {
-    margin: 0 1em 2em;
+    margin: 0 0.5em 1.5em;
   }
 }
 

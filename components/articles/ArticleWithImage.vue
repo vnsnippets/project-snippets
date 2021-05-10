@@ -1,11 +1,11 @@
 <template>
-  <div class="article">
-    <div class="card text-white antialiased">
+  <div class="card-container">
+    <div class="card article text-white antialiased">
       <nuxt-link class="no-underline block link" :to="url">
         <div class="cover">
-          <div :style="Cover(meta.cover)" class="cover-image" />
+          <div :style="`--bg-image: url('${meta.cover || defaultImage}');`" class="cover-image" />
         </div>
-        <div class="card-body p-5">
+        <div class="article-body p-5">
           <div class="icon flex justify-center items-center">
             <i class="cap-icon ci-ghost text-3xl"></i>
           </div>
@@ -17,12 +17,7 @@
             </div>
           </div>
         </div>
-        <div class="footer flex justify-between text-gray-400 border-t-2 border-gray-800">
-          <p>{{ timestamp }}</p>
-          <div>
-            <i class="cap-icon ci-heart"></i>
-          </div>
-        </div>
+        <CardFooter :date="meta.timestamp" />
       </nuxt-link>
     </div>
   </div>
@@ -30,27 +25,15 @@
 
 <script lang="ts">
 import Vue from 'vue'
-import dayjs from 'dayjs'
 
-import { BackgroundURL, DEFAULT_IMG } from '~/Extensions'
+import CardFooter from '~/components/cards/CardFooter.vue'
+import { DEFAULT_IMG } from '~/Extensions'
 
 export default Vue.extend({
   props: ['meta', 'url'],
+  components: { CardFooter },
   computed: {
-    timestamp() {
-      return dayjs.unix(this.meta.timestamp).format('MMMM DD, YYYY')
-    }
-  },
-  methods: {
-    Cover: (cover?: string) => {
-      const style = {
-        backgroundImage: BackgroundURL(DEFAULT_IMG)
-      }
-
-      if (cover && cover.length > 0) style.backgroundImage = BackgroundURL(cover)
-
-      return style
-    }
+    defaultImage: () => DEFAULT_IMG
   }
 })
 </script>
@@ -60,7 +43,7 @@ export default Vue.extend({
   .cover-image {
     transform: scale(1.25);
     filter: brightness(75%);
-    transition: all ease-in-out 200ms;
+    transition: all ease-in-out 300ms;
   }
 }
 
@@ -68,17 +51,18 @@ export default Vue.extend({
   overflow: hidden;
 
   .cover-image {
+    background-image: var(--bg-image);
     background-position: center center;
     background-size: cover;
     transform: scale(1);
     filter: brightness(100%);
-    transition: all ease-in-out 300ms;
     width: 100%;
     height: 100%;
+    transition: all ease-in-out 300ms;
   }
 }
 
-.card-body {
+.article-body {
   position: relative;
   padding-bottom: 5.25em;
 
@@ -114,16 +98,6 @@ export default Vue.extend({
   }
 }
 
-.footer {
-  position: absolute;
-  bottom: 0;
-  left: 0.25em;
-  right: 0.25em;
-  font-family: 'Roboto Slab', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  line-height: 1;
-  padding: 1.5em 1.25em;
-}
-
 // Additional CSS for normal Article with Image
 // This section is different in Article with Image XL
 .cover {
@@ -131,7 +105,7 @@ export default Vue.extend({
   height: 250px;
 }
 
-.card-body {
+.article-body {
   height: 250px;
 
   .icon {
