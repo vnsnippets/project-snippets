@@ -1,7 +1,7 @@
 <template>
   <div class="bg-gray-800 min-w-full min-h-screen flex flex-col">
     <Navigation />
-    <nuxt />
+    <nuxt class="flex flex-1" />
     <Footer />
   </div>
 </template>
