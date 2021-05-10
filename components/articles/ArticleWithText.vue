@@ -1,8 +1,8 @@
 <template>
-  <div class="article">
-    <div class="card text-white antialiased">
+  <div class="card-container">
+    <div class="card article text-white antialiased">
       <nuxt-link class="no-underline block link" :to="url">
-        <div class="card-body p-5 flex items-center justify-center">
+        <div class="article-body p-5 flex items-center justify-center">
           <div class="max-h-full overflow-hidden">
             <div class="icon flex justify-center items-center mb-4">
               <i class="cap-icon ci-ghost text-3xl"></i>
@@ -15,12 +15,7 @@
             </div>
           </div>
         </div>
-        <div class="footer flex justify-between text-gray-400 border-t-2 border-gray-800">
-          <p>{{ timestamp }}</p>
-          <div>
-            <i class="cap-icon ci-heart"></i>
-          </div>
-        </div>
+        <CardFooter :date="this.meta.timestamp" />
       </nuxt-link>
     </div>
   </div>
@@ -28,15 +23,11 @@
 
 <script lang="ts">
 import Vue from 'vue'
-import dayjs from 'dayjs'
+import CardFooter from '~/components/cards/CardFooter.vue'
 
 export default Vue.extend({
   props: ['meta', 'url'],
-  computed: {
-    timestamp() {
-      return dayjs.unix(this.meta.timestamp).format('MMMM DD, YYYY')
-    }
-  }
+  components: { CardFooter }
 })
 </script>
 
@@ -47,7 +38,7 @@ export default Vue.extend({
   flex-direction: column;
 }
 
-.card-body {
+.article-body {
   position: relative;
   padding-bottom: 5.25em;
   height: 100%;
@@ -81,15 +72,5 @@ export default Vue.extend({
     font-size: 1em;
     line-height: 1.5;
   }
-}
-
-.footer {
-  position: absolute;
-  bottom: 0;
-  left: 0.25em;
-  right: 0.25em;
-  font-family: 'Roboto Slab', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  line-height: 1;
-  padding: 1.5em 1.25em;
 }
 </style>
