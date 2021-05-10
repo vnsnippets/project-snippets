@@ -53,15 +53,13 @@ import Vue from 'vue'
 export default Vue.extend({
   name: 'social-media',
   props: ['theme'],
-  data() {
-    return {
-      links: {
-        instagram: 'https://instagram.com/vnsnippets',
-        twitter: 'https://twitter.com/vhnamah',
-        github: 'https://github.com/vnsnippets'
-      }
+  data: () => ({
+    links: {
+      instagram: 'https://instagram.com/vnsnippets',
+      twitter: 'https://twitter.com/vhnamah',
+      github: 'https://github.com/vnsnippets'
     }
-  }
+  })
 })
 </script>
 
@@ -80,11 +78,11 @@ export default Vue.extend({
 
 .social.dark a {
   background: #111827;
-  color: #ffffff;
+  color: #f3f4f6;
 }
 
 .social.light a {
-  background: #ffffff;
+  background: #f3f4f6;
   color: #111827;
 }
 
