@@ -10,8 +10,7 @@
     "build": "nuxt build",
     "start": "nuxt start",
     "generate": "nuxt generate",
-
-    "generate:firebase": "nuxt generate && xcopy /s .\\dist .\\firebase\\public"
+    "firebase:deploy": "cd ./firebase && firebase deploy --only hosting"
   },
   "dependencies": {
     "@nuxtjs/axios": "^5.3.6",

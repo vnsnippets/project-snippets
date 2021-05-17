@@ -15,10 +15,10 @@ import Vue from 'vue'
 export default Vue.extend({
   data: () => ({
     links: [
-      { route: '/', name: 'Home', icon: 'ci-home', class: 'home' },
+      // { route: '/', name: 'Home', icon: 'ci-home', class: 'home' },
+      { route: '/about', name: 'About', icon: 'ci-user-alt' },
       { route: '/blog', name: 'Blog', icon: 'ci-pen-nib' },
-      { route: '/projects', name: 'Projects', icon: 'ci-rocket' },
-      { route: '/about', name: 'About', icon: 'ci-user-alt' }
+      { route: '/projects', name: 'Projects', icon: 'ci-rocket' }
     ]
   })
 })
