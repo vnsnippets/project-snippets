@@ -9,10 +9,10 @@ import Vue from 'vue'
 
 export default Vue.extend({
   middleware: [
-      function({ redirect }) {
-          redirect('/blog');
-      },
-    ]
+    function({ redirect }) {
+        redirect('/blog');
+    },
+  ]
 })
 </script>
 
