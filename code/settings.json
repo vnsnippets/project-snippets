@@ -1,3 +1,12 @@
 {
-   "index": "https://raw.githubusercontent.com/vnsnippets/project-snippets/master/blog/index.json"
+   "title": "Snippets",
+   "description": "Personal playground to explore the world of technology",
+   "social": {
+      "instagram": "https://www.instagram.com/vnsnippets",
+      "twitter": "https://www.twitter.com/VHNamah",
+      "github": "https://github.com/vnsnippets"
+   },
+   "sources": {
+      "index": "https://raw.githubusercontent.com/vnsnippets/project-snippets/master/blog/index.json"
+   }
 }
