@@ -2,21 +2,26 @@
   <div class="container min-w-full mx-0">
     <div class="cards">
       <client-only>
-        <div class="wrapper">
-          <ProfileCard />
-        </div>
-        <div
-          v-for="(meta, index) in articles"
-          :key="index"
-          class="wrapper"
-          :class="meta.options.UseLargeArticle === true ? 'lg' : null"
-          align="center"
-        >
-          <a :id="Anchor(meta)"></a>
+        <div v-if="$fetchState.pending">Herding cats...</div>
+        <div v-else-if="$fetchState.error">THE CATS GOT AWAY!</div>
+        <div v-else>
+          <div class="wrapper">
+            <ProfileCard />
+          </div>
 
-          <ArticleWithImageXL v-if="meta.options.UseLargeArticle === true" :meta="meta" :url="URL(meta)" />
-          <ArticleWithImage v-else-if="meta.options.UseImageArticle === true" :meta="meta" :url="URL(meta)" />
-          <ArticleWithText v-else :meta="meta" :url="URL(meta)" />
+          <div
+            v-for="(meta, index) in articles"
+            :key="index"
+            class="wrapper"
+            :class="meta.options.UseLargeArticle === true ? 'lg' : null"
+            align="center"
+          >
+            <a :id="Anchor(meta)"></a>
+
+            <ArticleWithImageXL v-if="meta.options.UseLargeArticle === true" :meta="meta" :url="URL(meta)" />
+            <ArticleWithImage v-else-if="meta.options.UseImageArticle === true" :meta="meta" :url="URL(meta)" />
+            <ArticleWithText v-else :meta="meta" :url="URL(meta)" />
+          </div>
         </div>
       </client-only>
     </div>
@@ -27,13 +32,13 @@
 import Vue from 'vue'
 import { Metadata } from '~/models/Article'
 
-import { MOCK_METADATA } from '~/Mock'
-
 import ProfileCard from '~/components/cards/ProfileCard.vue'
 
 import ArticleWithImage from '~/components/articles/ArticleWithImage.vue'
 import ArticleWithImageXL from '~/components/articles/ArticleWithImageXL.vue'
 import ArticleWithText from '~/components/articles/ArticleWithText.vue'
+
+const ARTICLES_SOURCE = 'https://raw.githubusercontent.com/vnsnippets/project-snippets/master/blog/index.json';
 
 type DataType = {
   articles: Metadata[]
@@ -53,11 +58,14 @@ export default Vue.extend({
       return `${meta.tag.toLowerCase().replace(/\s/g, '-')}--${meta.title.toLowerCase().replace(/\s/g, '-')}`
     }
   },
-  created() {
-    const data = MOCK_METADATA
-    data.sort((a, b) => b.timestamp - a.timestamp)
+  created() { },
+  async fetch() {
+    const data = await fetch(ARTICLES_SOURCE)
+      .then((response) => response.json());
 
-    this.articles = data.map((article, index) => {
+    data.sort((a: Metadata, b: Metadata) => b.timestamp - a.timestamp)
+
+    this.articles = data.map((article: Metadata, index: Number) => {
       const options = {
         UseImageArticle: false,
         UseLargeArticle: false
@@ -72,7 +80,7 @@ export default Vue.extend({
       }
 
       return { ...article, options }
-    })
+    });
   }
 })
 </script>
