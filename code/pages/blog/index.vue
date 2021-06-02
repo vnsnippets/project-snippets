@@ -1,30 +1,32 @@
 <template>
-  <div class="container min-w-full mx-0">
-    <div class="cards">
-      <client-only>
-        <div v-if="$fetchState.pending">Herding cats...</div>
-        <div v-else-if="$fetchState.error">THE CATS GOT AWAY!</div>
-        <div v-else>
-          <div class="wrapper">
-            <ProfileCard />
-          </div>
-
-          <div
-            v-for="(meta, index) in articles"
-            :key="index"
-            class="wrapper"
-            :class="meta.options.UseLargeArticle === true ? 'lg' : null"
-            align="center"
-          >
-            <a :id="Anchor(meta)"></a>
-
-            <ArticleWithImageXL v-if="meta.options.UseLargeArticle === true" :meta="meta" :url="URL(meta)" />
-            <ArticleWithImage v-else-if="meta.options.UseImageArticle === true" :meta="meta" :url="URL(meta)" />
-            <ArticleWithText v-else :meta="meta" :url="URL(meta)" />
-          </div>
+  <div class="container">
+    <client-only>
+      <div class="pb-5 min-w-full mx-0">
+      <Loader v-if="$fetchState.pending" message="Loading" />
+      <Failed v-else-if="$fetchState.error" code="</>" message="Something went wrong!" />
+      
+      <div v-else class="cards">
+        <div class="wrapper">
+          <ProfileCard />
         </div>
-      </client-only>
-    </div>
+
+        <div
+          v-for="(meta, index) in articles"
+          :key="index"
+          class="wrapper"
+          :class="meta.options.UseLargeArticle === true ? 'lg' : null"
+          align="center"
+        >
+          <a :id="Anchor(meta)"></a>
+
+          <ArticleWithImageXL v-if="meta.options.UseLargeArticle === true" :meta="meta" :url="URL(meta)" />
+          <ArticleWithImage v-else-if="meta.options.UseImageArticle === true" :meta="meta" :url="URL(meta)" />
+          <ArticleWithText v-else :meta="meta" :url="URL(meta)" />
+        </div>
+      </div>
+      
+      </div>
+    </client-only>
   </div>
 </template>
 
@@ -37,6 +39,7 @@ import ProfileCard from '~/components/cards/ProfileCard.vue'
 import ArticleWithImage from '~/components/articles/ArticleWithImage.vue'
 import ArticleWithImageXL from '~/components/articles/ArticleWithImageXL.vue'
 import ArticleWithText from '~/components/articles/ArticleWithText.vue'
+import Loader from '~/components/Loader.vue'
 
 const ARTICLES_SOURCE = 'https://raw.githubusercontent.com/vnsnippets/project-snippets/master/blog/index.json';
 
@@ -46,7 +49,7 @@ type DataType = {
 
 export default Vue.extend({
   layout: 'blog',
-  components: { ArticleWithImage, ArticleWithImageXL, ArticleWithText, ProfileCard },
+  components: { ArticleWithImage, ArticleWithImageXL, ArticleWithText, ProfileCard, Loader },
   data: (): DataType => ({
     articles: []
   }),
