@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="container min-w-full">
     <client-only>
       <div class="pb-5 min-w-full mx-0">
       <Loader v-if="$fetchState.pending" message="Loading" />
@@ -24,7 +24,7 @@
           <ArticleWithText v-else :meta="meta" :url="URL(meta)" />
         </div>
       </div>
-      
+
       </div>
     </client-only>
   </div>
