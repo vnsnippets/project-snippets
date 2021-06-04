@@ -40,6 +40,7 @@ import ArticleWithImage from '~/components/articles/ArticleWithImage.vue'
 import ArticleWithImageXL from '~/components/articles/ArticleWithImageXL.vue'
 import ArticleWithText from '~/components/articles/ArticleWithText.vue'
 import Loader from '~/components/Loader.vue'
+import dayjs from 'dayjs'
 
 const ARTICLES_SOURCE = 'https://raw.githubusercontent.com/vnsnippets/project-snippets/master/blog/index.json';
 
@@ -55,7 +56,10 @@ export default Vue.extend({
   }),
   methods: {
     URL: (meta: Metadata) => {
-      return `blog/${meta.tag.toLowerCase().replace(/\s/g, '-')}/${meta.title.toLowerCase().replace(/\s/g, '-')}`
+      // return `blog/${meta.tag.toLowerCase().replace(/\s/g, '-')}/${meta.title.toLowerCase().replace(/\s/g, '-')}`
+      const date = dayjs.unix(meta.timestamp).format('YYYY/MM');
+      const title = meta.title.toLowerCase().replace('\'', '').replace(/\s/g, '-')
+      return `blog/${date}/${title}`
     },
     Anchor: (meta: Metadata) => {
       return `${meta.tag.toLowerCase().replace(/\s/g, '-')}--${meta.title.toLowerCase().replace(/\s/g, '-')}`
