@@ -52,6 +52,15 @@ export default {
   */
   axios: {
   },
+  router: {
+    extendRoutes(routes, resolve) {
+      routes.push({
+        name: 'Blog-Article',
+        path: '/blog/:year/:month/:title',
+        component: resolve(__dirname, 'pages/blog/-article.vue')
+      })
+    }
+  },
   /*
   ** Build configuration
   */
