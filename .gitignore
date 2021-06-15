@@ -92,4 +92,4 @@ sw.*
 # Custom (Temporary)
 .build
 firebase
-.code-workspace
+*.code-workspace
