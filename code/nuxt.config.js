@@ -45,6 +45,7 @@ export default {
     // Doc: https://axios.nuxtjs.org/usage
     '@nuxtjs/axios',
     '@nuxtjs/pwa',
+    '@nuxtjs/markdownit',
   ],
   /*
   ** Axios module configuration
@@ -81,5 +82,14 @@ export default {
   components: true,
   generate: {
     dir: './firebase/public'
+  },
+  markdownit: {
+    preset: 'default',
+    linkify: true,
+    breaks: true,
+    use: [
+      'markdown-it-div',
+      'markdown-it-attrs'
+    ]
   }
 }
