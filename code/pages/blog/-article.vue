@@ -2,7 +2,9 @@
   <div class="container min-w-full">
     <Loader v-if="$fetchState.pending" message="Loading" />
     <Failed v-else-if="$fetchState.error" code="</>" message="Something went wrong!" />
-    <article v-else v-html="article"></article>
+    <article v-else>
+      {{ article }}
+    </article>
   </div>
 </template>
 
@@ -27,17 +29,17 @@ export default Vue.extend({
     const rawArticle = await fetch(uri)
       .then((response) => response.text());
 
-    const githubMarkdown = await fetch('https://api.github.com/markdown', {
-      method: "POST",
-      headers: {
-        "Accept": "application/vnd.github.v3+json"
-      },
-      body: JSON.stringify({
-        text: rawArticle
-      })
-    }).then((response) => response.text());
+    // const githubMarkdown = await fetch('https://api.github.com/markdown', {
+    //   method: "POST",
+    //   headers: {
+    //     "Accept": "application/vnd.github.v3+json"
+    //   },
+    //   body: JSON.stringify({
+    //     text: rawArticle
+    //   })
+    // }).then((response) => response.text());
 
-    this.article = githubMarkdown;
+    this.article = rawArticle;
   }
 })
 </script>
