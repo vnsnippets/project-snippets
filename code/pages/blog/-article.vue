@@ -3,13 +3,14 @@
     <Loader v-if="$fetchState.pending" message="Loading" />
     <Failed v-else-if="$fetchState.error" code="</>" message="Something went wrong!" />
     <article v-else>
-      {{ article }}
+      <Markdown :md="article" />
     </article>
   </div>
 </template>
 
 <script lang="ts">
 import Vue from 'vue'
+import Markdown from '~/components/Markdown.vue';
 
 const SRC = (path:string) => `https://raw.githubusercontent.com/vnsnippets/project-snippets/master/blog/articles/${path}.md`;
 
@@ -18,6 +19,7 @@ type DataType = {
 }
 
 export default Vue.extend({
+  components: { Markdown },
   layout: 'blog',
   data: () : DataType => ({
     article: null
