@@ -2,9 +2,7 @@
   <div class="container min-w-full">
     <Loader v-if="$fetchState.pending" message="Loading" />
     <Failed v-else-if="$fetchState.error" code="</>" message="Something went wrong!" />
-    <article v-else>
-      <Markdown :md="article" />
-    </article>
+    <article v-else v-html="$md.render(article)"></article>
   </div>
 </template>
 

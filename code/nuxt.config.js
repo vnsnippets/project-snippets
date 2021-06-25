@@ -87,6 +87,7 @@ export default {
     preset: 'default',
     linkify: true,
     breaks: true,
+    runtime: true
     // use: [
     //   'markdown-it-div',
     //   'markdown-it-attrs'
