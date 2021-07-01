@@ -2,7 +2,7 @@
   <div class="container min-w-full">
     <Loader v-if="$fetchState.pending" message="Loading" />
     <Failed v-else-if="$fetchState.error" code="</>" message="Something went wrong!" />
-    <article v-else v-html="$md.render(article)"></article>
+    <article v-else v-html="$md.render(article)" class="pb-5" />
   </div>
 </template>
 
@@ -27,16 +27,6 @@ export default Vue.extend({
     const rawArticle = await fetch(uri)
       .then((response) => response.text());
 
-    // const githubMarkdown = await fetch('https://api.github.com/markdown', {
-    //   method: "POST",
-    //   headers: {
-    //     "Accept": "application/vnd.github.v3+json"
-    //   },
-    //   body: JSON.stringify({
-    //     text: rawArticle
-    //   })
-    // }).then((response) => response.text());
-
     this.article = rawArticle;
   }
 })
@@ -48,6 +38,32 @@ export default Vue.extend({
   display: flex;
   justify-content: center;
   align-items: center;
-  text-align: center;
+  text-align: left;
+}
+
+
+@media only screen and (max-width: 767px) {
+  .container {
+    padding: 0.5em 1em 0em;
+  }
+}
+
+@media only screen and (min-width: 768px) and (max-width: 1150px) {
+  .container {
+    padding: 1.25em 5em 2em;
+  }
+}
+
+@media only screen and (min-width: 1150px) {
+  .container {
+    padding: 1.25em 9.25em;
+  }
+}
+
+article {
+  color: #E0E0E0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+
+  hr { border-color: #1f2937; margin: 1em 0; }
 }
 </style>
