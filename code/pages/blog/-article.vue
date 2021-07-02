@@ -65,5 +65,23 @@ article {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 
   hr { border-color: #1f2937; margin: 1em 0; }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-weight: 600;
+    line-height: 1.25;
+    margin-bottom: 16px;
+  }
+
+  h1 { font-size: 2em; }
+  h2 { font-size: 1.5em; }
+  h3 { font-size: 1.25em; }
+  h4 { font-size: 1em; }
+  h5 { font-size: .875em; }
+  h6 { font-size: .85em; }
+
+  blockquote, details, dl, ol, p, pre, table, ul {
+    margin-bottom: 16px;
+    margin-top: 0;
+  }
 }
 </style>
