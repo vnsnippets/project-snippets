@@ -61,15 +61,20 @@ export default Vue.extend({
 }
 
 article {
-  color: #E0E0E0;
+  color: #F9FAFB;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 
-  hr { border-color: #1f2937; margin: 1em 0; }
+  hr { border-color: #1f2937; margin: 1.25em 0; }
 
   h1, h2, h3, h4, h5, h6 {
     font-weight: 600;
     line-height: 1.25;
     margin-bottom: 16px;
+  }
+
+  h1, h2 {
+    border-bottom: 1px solid #1f2937;
+    padding-bottom: .3em;
   }
 
   h1 { font-size: 2em; }
@@ -83,5 +88,38 @@ article {
     margin-bottom: 16px;
     margin-top: 0;
   }
+  
+  blockquote {
+    border-left: .25em solid #1f2937;
+    color: #9CA3AF;
+    padding: 0 1em;
+  }
+
+  code { font-family: 'Courier New', Courier, monospace; }
+
+  p > code {
+    background-color: #1f2937;
+    padding: 0.25em 0.5em;
+    border-radius: 5px;
+  }
+
+  pre { 
+    background-color: #1f2937;
+    padding: 1em;
+    border-radius: 10px;
+  }
+
+  ol, ul { padding-left: 2em; }
+  ul { list-style-type: disc; }
+  ol { list-style-type: decimal; }
+
+  table { 
+    td, th { border: 1px solid #4B5563; padding: 0.5em; }
+    th { background-color: #1f2937; font-weight: 500; }
+    td { font-weight: 300; }
+  }
+
+  a { color: #A5B4FC; }
+  a:visited { color: #A78BFA; }
 }
 </style>
